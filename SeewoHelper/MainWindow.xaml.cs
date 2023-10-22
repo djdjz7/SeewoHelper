@@ -20,6 +20,7 @@ namespace SeewoHelper
         string CameraLocation = "";
         string ZyflierLocation = "";
         bool IsStartAvailable = true;
+        int modeCounter = 0;
 
         DateTime LastClick = DateTime.MinValue;
         int ClickCount = 0;
@@ -40,10 +41,6 @@ namespace SeewoHelper
             {
                 EasiNote5Location = "";
             }
-            if (string.IsNullOrEmpty(EasiNote5Location))
-            {
-                EasiNote5Icon.Visibility = Visibility.Collapsed;
-            }
 
             try
             {
@@ -60,10 +57,6 @@ namespace SeewoHelper
             {
                 CameraLocation = "";
             }
-            if (string.IsNullOrEmpty(CameraLocation))
-            {
-                CameraIcon.Visibility = Visibility.Collapsed;
-            }
 
             try
             {
@@ -78,7 +71,6 @@ namespace SeewoHelper
             //ZyflierIcon.Visibility = Visibility.Collapsed;
 
             new Schedule().Show();
-            //new ScheduleEditor().Show();
         }
 
         private void EasiNote5Icon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -167,6 +159,7 @@ namespace SeewoHelper
             if (IsStartAvailable)
             {
                 IsStartAvailable = false;
+                new QiDong((QiDongMode)modeCounter).Show();
                 Storyboard openAnim = Resources["OpenEasiNote5"] as Storyboard;
                 openAnim.AutoReverse = true;
                 openAnim.Begin();
@@ -199,71 +192,6 @@ namespace SeewoHelper
                 catch { }
             }
         }
-
-        /*
-        private void ZyflierIcon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            DoubleAnimation ZyflierDepthAnim = new DoubleAnimation()
-            {
-                To = 8,
-                Duration = TimeSpan.FromSeconds(0.2),
-                AccelerationRatio = 0,
-                DecelerationRatio = 1
-            };
-            DoubleAnimation ZyflierBlurAnim = new DoubleAnimation()
-            {
-                To = 32,
-                Duration = TimeSpan.FromSeconds(0.2),
-                AccelerationRatio = 0,
-                DecelerationRatio = 1
-            };
-            ZyflierIconShadow.BeginAnimation(DropShadowEffect.ShadowDepthProperty, ZyflierDepthAnim);
-            ZyflierIconShadow.BeginAnimation(DropShadowEffect.BlurRadiusProperty, ZyflierBlurAnim);
-
-        }
-
-        private void ZyflierIcon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            DoubleAnimation ZyflierDepthAnim = new DoubleAnimation()
-            {
-                To = 4,
-                Duration = TimeSpan.FromSeconds(0.2),
-                AccelerationRatio = 0,
-                DecelerationRatio = 1
-            };
-            DoubleAnimation ZyflierBlurAnim = new DoubleAnimation()
-            {
-                To = 8,
-                Duration = TimeSpan.FromSeconds(0.2),
-                AccelerationRatio = 0,
-                DecelerationRatio = 1
-            };
-            ZyflierIconShadow.BeginAnimation(DropShadowEffect.ShadowDepthProperty, ZyflierDepthAnim);
-            ZyflierIconShadow.BeginAnimation(DropShadowEffect.BlurRadiusProperty, ZyflierBlurAnim);
-
-        }
-
-        private void ZyflierIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (IsStartAvailable)
-            {
-                IsStartAvailable = false;
-                Storyboard openAnim = Resources["OpenZyflier"] as Storyboard;
-                openAnim.AutoReverse = true;
-                openAnim.Begin();
-                ProcessStartInfo startInfo = new ProcessStartInfo()
-                {
-                    UseShellExecute = true,
-                    WorkingDirectory = ZyflierLocation.Replace("CloudRoom.Main.exe", ""),
-                    FileName = ZyflierLocation,
-                };
-                try
-                {
-                    Process.Start(startInfo);
-                }
-                catch { }
-            }
-        }*/
 
         private void Rectangle_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -377,6 +305,26 @@ namespace SeewoHelper
         private void OpenWidget_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             new DesktopWidget().Show();
+        }
+
+        private void ModeCounter_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            modeCounter = (modeCounter + 1) % 4;
+            switch(modeCounter)
+            {
+                case 0:
+                    ModeCounter.Text = "·";
+                    break;
+                case 1:
+                    ModeCounter.Text = "·\n·";
+                    break;
+                case 2:
+                    ModeCounter.Text = "·\n·\n·";
+                    break;
+                case 3:
+                    ModeCounter.Text = "·\n·\n·\n·";
+                    break;
+            }
         }
     }
 }

@@ -1,0 +1,181 @@
+﻿<Window
+    x:Class="SeewoHelper.QiDong"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SeewoHelper"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="QiDong"
+    Width="1920"
+    Height="1080"
+    AllowsTransparency="True"
+    Background="Transparent"
+    Loaded="Window_Loaded"
+    ShowInTaskbar="False"
+    TextElement.FontFamily="./Assets/#HYWenHei 85W"
+    TextElement.FontSize="22"
+    WindowState="Maximized"
+    WindowStyle="None" Topmost="True" Deactivated="Window_Deactivated"
+    mc:Ignorable="d" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <Storyboard x:Key="QiDongAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Screen2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:02.5000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.4000000" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:06" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:06.5000000" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Screen1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExtraInfo" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:03.2000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.5000000" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Screen3" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:07" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:07.5000000" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:10.8000000" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:10.8000000" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:11.3000000" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="QiDongAnimationShort">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Screen2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:02.5000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.4000000" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:06" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:06.5000000" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Screen1" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:02" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ExtraInfo" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:03.2000000" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:03.5000000" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:06" Value="1" />
+                <EasingDoubleKeyFrame KeyTime="00:00:06.5000000" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid x:Name="grid">
+        <Grid Name="Background" Background="White" />
+        <Grid Name="Screen1" Opacity="1">
+            <Image
+                Name="MihoyoLogo"
+                Height="189.6"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Source="/Assets/mihoyo.png" />
+        </Grid>
+        <Grid Name="Screen2" Opacity="0">
+            <Image
+                Name="GenshinLogo"
+                Height="256"
+                Source="{StaticResource GenshinLogo}" />
+            <StackPanel
+                Name="ExtraInfo"
+                Margin="40"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Opacity="0">
+                <TextBlock
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Foreground="#5a5a5a">
+                    抵制不良游戏，拒绝盗版游戏，注意自我保护，谨防受骗上当，适度游戏益脑，沉迷游戏伤身，合理安排时间，享受健康生活。
+                </TextBlock>
+                <TextBlock
+                    Name="Numbers"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Foreground="#5a5a5a">
+                    审批文号：国新出审[2020]1407号　ISBN 978-7-498-07852-0　出版单位：华东师范大学电子音像出版社有限公司
+                </TextBlock>
+                <TextBlock
+                    Name="Copyrighter"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Foreground="#5a5a5a">
+                    著作权人：上海米哈游天命科技有限公司
+                </TextBlock>
+                <TextBlock
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Foreground="#5a5a5a">
+                    本公司积极履行《网络游戏行业防沉迷自律公约》
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid
+            Name="Screen3"
+            Opacity="0"
+            TextElement.FontSize="26">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock
+                    Name="WarningTitle"
+                    FontSize="38"
+                    Foreground="#333333"
+                    TextAlignment="Center">
+                    警告：游戏前详阅
+                </TextBlock>
+                <Image
+                    Name="Separator"
+                    Height="31.2"
+                    Source="Assets/sep.png" />
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    有极少数的人在观看一些视觉影像时可能会突然癫痫发作，这些影像包括电子游戏中出现的闪光或图形。
+                </TextBlock>
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    在进行电子游戏时，这些人可能会出现癫痫症状。甚至连不具有癫痫史的人，也可能在进行电子游戏时，
+                </TextBlock>
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    出现类似癫痫症状。如果您或您的家人有癫痫史，请在进行游戏之前先与医生咨询。如果您在游玩电子游
+                </TextBlock>
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    戏时出现以下症状，包括眼睛疼痛、视觉异常、偏头痛、痉挛或意识障碍（诸如昏迷）等，请立即中止游戏，
+                </TextBlock>
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    并且请您于再次进行本游戏之前咨询您的医生。
+                </TextBlock>
+                <TextBlock />
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    除上述症状外，当您感到头痛、头晕眼花、恶心想吐或类似晕车症状时，以及当身体的某些部位感到不舒
+                </TextBlock>
+                <TextBlock
+                    Margin="3"
+                    Foreground="#5a5a5a"
+                    TextAlignment="Center">
+                    服或疼痛时，请立即中止游戏。若在中止游戏后，症状仍没有减退，请立即寻求医生的诊疗。
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

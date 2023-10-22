@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SeewoHelper"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="window"
     Title="MainWindow"
     Width="300"
     Height="100"
@@ -26,7 +27,7 @@
                 <DiscreteObjectKeyFrame KeyTime="00:00:03" Value="{x:Static Visibility.Collapsed}" />
             </ObjectAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="CameraIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="24,0,0,0" />
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="12,0,0,0" />
                 <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut" />
@@ -64,59 +65,30 @@
                 </EasingDoubleKeyFrame>
                 <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0" />
             </DoubleAnimationUsingKeyFrames>
-            <!--
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="24,0,0,0">
-                    <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingThicknessKeyFrame.EasingFunction>
-                </EasingThicknessKeyFrame>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ModeCounter" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="12,0,0,0" />
                 <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
+                        <QuarticEase EasingMode="EaseOut" />
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
-                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,0,0,0" />
             </ThicknessAnimationUsingKeyFrames>
-
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="64">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ModeCounter" Storyboard.TargetProperty="(TextBlock.FontSize)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="6" />
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.01">
                     <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
+                        <QuarticEase EasingMode="EaseOut" />
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0.01" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:01" Value="{x:Static Visibility.Collapsed}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:03" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-            -->
         </Storyboard>
 
 
         <Storyboard x:Key="OpenCamera" Completed="OpenAnim_Completed">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="CameraIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="24,0,0,0" />
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="12,0,0,0" />
                 <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut" />
@@ -157,123 +129,15 @@
                 <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,12,0,0" />
                 <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,12,0,0" />
             </ThicknessAnimationUsingKeyFrames>
-            <!--
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="24,0,0,0">
-                    <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingThicknessKeyFrame.EasingFunction>
-                </EasingThicknessKeyFrame>
-                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
-                    <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingThicknessKeyFrame.EasingFunction>
-                </EasingThicknessKeyFrame>
-                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,0,0,0"/>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ModeCounter" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="12,0,0,0" />
+                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0" />
             </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ModeCounter" Storyboard.TargetProperty="(TextBlock.FontSize)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="6" />
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.01" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="64"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuinticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="64"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:01" Value="{x:Static Visibility.Collapsed}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:03" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-            -->
         </Storyboard>
-        <!--
-        <Storyboard x:Key="OpenZyflier" Completed="OpenAnim_Completed">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EasiNote5Icon" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuinticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="EasiNote5Icon" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="64"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EasiNote5Icon" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:01" Value="{x:Static Visibility.Collapsed}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:03" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="CameraIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="24,0,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
-                    <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingThicknessKeyFrame.EasingFunction>
-                </EasingThicknessKeyFrame>
-                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,0,0,0"/>
-            </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CameraIcon" Storyboard.TargetProperty="(FrameworkElement.Height)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="64"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CameraIcon" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CameraIcon" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:01" Value="{x:Static Visibility.Collapsed}"/>
-                <DiscreteObjectKeyFrame KeyTime="00:00:03" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ZyflierIcon" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="24,0,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
-                    <EasingThicknessKeyFrame.EasingFunction>
-                        <QuinticEase EasingMode="EaseOut"/>
-                    </EasingThicknessKeyFrame.EasingFunction>
-                </EasingThicknessKeyFrame>
-                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,0,0,0"/>
-            </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,12,0,0"/>
-                <EasingThicknessKeyFrame KeyTime="00:00:03" Value="0,12,0,0"/>
-            </ThicknessAnimationUsingKeyFrames>
-        </Storyboard>
-        -->
     </Window.Resources>
 
     <Grid>
@@ -291,7 +155,7 @@
                             MouseDown="EasiNote5Icon_MouseDown"
                             MouseEnter="EasiNote5Icon_MouseEnter"
                             MouseLeave="EasiNote5Icon_MouseLeave"
-                            Source="note5.ico">
+                            Source="Assets/note5.ico">
                             <Image.Effect>
                                 <DropShadowEffect
                                     x:Name="EasiNote5IconShadow"
@@ -301,14 +165,24 @@
                             </Image.Effect>
                         </Image>
 
+                        <TextBlock
+                            Name="ModeCounter"
+                            Margin="12,0,0,0"
+                            VerticalAlignment="Center"
+                            Background="#01000000"
+                            FontSize="6"
+                            FontWeight="Black"
+                            Foreground="White"
+                            MouseDown="ModeCounter_MouseDown"
+                            Text="·" />
                         <Image
                             Name="CameraIcon"
                             Height="64"
-                            Margin="24,0,0,0"
+                            Margin="12,0,0,0"
                             MouseDown="CameraIcon_MouseDown"
                             MouseEnter="CameraIcon_MouseEnter"
                             MouseLeave="CameraIcon_MouseLeave"
-                            Source="camera.png">
+                            Source="Assets/camera.png">
                             <Image.Effect>
                                 <DropShadowEffect
                                     x:Name="CameraIconShadow"
@@ -317,13 +191,6 @@
                                     Color="#FF9E9E9E" />
                             </Image.Effect>
                         </Image>
-                        <!---
-                        <Image Margin="24 0 0 0" Source="zyflier.png" Height="64" Name="ZyflierIcon" MouseEnter="ZyflierIcon_MouseEnter" MouseLeave="ZyflierIcon_MouseLeave" MouseDown="ZyflierIcon_MouseDown" SnapsToDevicePixels="True">
-                            <Image.Effect>
-                                <DropShadowEffect x:Name="ZyflierIconShadow" BlurRadius="8" ShadowDepth="4" Color="#FFD7A3FF"></DropShadowEffect>
-                            </Image.Effect>
-                        </Image>
-                        -->
                     </StackPanel>
                     <TextBlock
                         x:Name="textBlock"
@@ -369,9 +236,10 @@
                             </DrawingImage>
                         </Image.Source>
                     </Image>
-                    <Image Name="OpenWidget"
-                           Margin="0 5 0 0"
-                           MouseDown="OpenWidget_MouseDown">
+                    <Image
+                        Name="OpenWidget"
+                        Margin="0,5,0,0"
+                        MouseDown="OpenWidget_MouseDown">
                         <Image.Source>
                             <DrawingImage>
                                 <DrawingImage.Drawing>

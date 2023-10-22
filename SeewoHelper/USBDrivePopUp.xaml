@@ -9,48 +9,77 @@
     Width="350"
     Height="125"
     AllowsTransparency="True"
+    Background="Transparent"
+    Deactivated="Window_Deactivated"
+    Loaded="Window_Loaded"
+    ShowInTaskbar="False"
+    Topmost="True"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    Background="Transparent"
-    Topmost="True"
-    Deactivated="Window_Deactivated"
-    mc:Ignorable="d" Loaded="Window_Loaded" ShowInTaskbar="False">
+    mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="Show">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,209,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,209,0,0" />
                 <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,0,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
+                        <QuarticEase EasingMode="EaseOut" />
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="Close">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Margin)">
-                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
                 <EasingThicknessKeyFrame KeyTime="00:00:01" Value="0,211,0,0">
                     <EasingThicknessKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseInOut"/>
+                        <QuarticEase EasingMode="EaseInOut" />
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    <Grid x:Name="grid" Margin="0,209,0,0" MouseDown="grid_MouseDown">
-        <Rectangle Fill="#FAFAFA" Grid.ColumnSpan="2" Grid.RowSpan="2" RadiusX="14" RadiusY="14"/>
-        <Grid Margin="10 5 10 5">
+    <Grid
+        x:Name="grid"
+        Margin="0,209,0,0"
+        MouseDown="grid_MouseDown">
+        <Rectangle
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            Fill="#FAFAFA"
+            RadiusX="14"
+            RadiusY="14" />
+        <Grid Margin="10,5,10,5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="115"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="115" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.RowSpan="2" Source="USBicon.png" Height="115"></Image>
-            <TextBlock Name="DriveNameLabel" Text="VOLUMN_LABEL (NAME)" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" TextWrapping="Wrap"/>
-            <TextBlock Text="单击此处访问驱动器" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" Foreground="DarkGray" TextWrapping="Wrap"/>
+            <Image
+                Grid.RowSpan="2"
+                Height="115"
+                Source="/Assets/USBicon.png" />
+            <TextBlock
+                Name="DriveNameLabel"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                FontSize="18"
+                FontWeight="Bold"
+                Text="VOLUMN_LABEL (NAME)"
+                TextWrapping="Wrap" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="14"
+                Foreground="DarkGray"
+                Text="单击此处访问驱动器"
+                TextWrapping="Wrap" />
 
         </Grid>
 

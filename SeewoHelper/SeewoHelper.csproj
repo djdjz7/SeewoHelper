@@ -22,6 +22,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\85w.ttf" />
+    <None Remove="Assets\easinote.svg" />
+    <None Remove="Assets\mihoyo.png" />
+    <None Remove="Assets\seewo.svg" />
+    <None Remove="Assets\sep.png" />
+    <None Remove="Assets\ys.png" />
     <None Remove="camera.png" />
     <None Remove="note5.ico" />
     <None Remove="USBicon.png" />
@@ -40,13 +46,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="camera.png" />
+    <Resource Include="Assets\camera.png" />
+    <Resource Include="Assets\easinote.svg" />
+    <Resource Include="Assets\mihoyo.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="note5.ico" />
-    <Resource Include="USBicon.png" />
-    <Resource Include="zyflier.png" />
+    <Resource Include="Assets\note5.ico" />
+    <Resource Include="Assets\seewo.svg" />
+    <Resource Include="Assets\sep.png" />
+    <Resource Include="Assets\USBicon.png" />
+    <Resource Include="Assets\85w.ttf" />
+    <Resource Include="Assets\zyflier.png" />
   </ItemGroup>
 
 </Project>
