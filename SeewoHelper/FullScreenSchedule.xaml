@@ -5,27 +5,53 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SeewoHelper"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title=""
-    SizeToContent="Height"
-    Width="170"
     d:DataContext="{d:DesignInstance Type=local:FullScreenSchedule}"
     AllowsTransparency="True"
     Background="Transparent"
+    ContentRendered="Window_ContentRendered"
     ResizeMode="NoResize"
-    WindowStyle="None"
+    ShowInTaskbar="False"
+    SizeToContent="WidthAndHeight"
     Topmost="True"
-    mc:Ignorable="d" ShowInTaskbar="False">
+    WindowStyle="None"
+    mc:Ignorable="d">
     <StackPanel>
-        <ListBox Name="MainListBox" ItemsSource="{Binding Curricula}" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#66000000">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Width="150">
-                        <TextBlock
-                            Text="{Binding Name}" HorizontalAlignment="Right"
-                            TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="20" Foreground="White"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel Orientation="Horizontal">
+            <Button
+                Height="60"
+                Padding="0,12,0,12"
+                VerticalAlignment="Bottom"
+                md:RippleAssist.IsDisabled="True"
+                Background="#66000000"
+                Click="Button_Click"
+                Style="{StaticResource MaterialDesignFlatButton}">
+                <Image Source="{StaticResource chevron_right_white_24dpDrawingImage}" />
+            </Button>
+            <ListBox
+                Name="MainListBox"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="#66000000"
+                ItemsSource="{Binding Curricula}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <StackPanel>
+                                <TextBlock
+                                    HorizontalAlignment="Right"
+                                    FontSize="20"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="{Binding Name}"
+                                    TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
     </StackPanel>
 </Window>

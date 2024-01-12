@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -212,7 +213,7 @@ namespace SeewoHelper
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+            HwndSource? hwndSource = PresentationSource.FromVisual(this) as HwndSource;
             if (hwndSource != null)
             {
                 hwndSource.AddHook(new HwndSourceHook(WndProc));

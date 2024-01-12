@@ -468,6 +468,14 @@
                     </DrawingGroup>
                 </DrawingImage.Drawing>
             </DrawingImage>
+
+            <DrawingImage x:Key="chevron_right_white_24dpDrawingImage">
+                <DrawingImage.Drawing>
+                    <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                        <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M9.29,6.71C8.9,7.1,8.9,7.73,9.29,8.12L13.17,12 9.29,15.88C8.9,16.27 8.9,16.9 9.29,17.29 9.68,17.68 10.31,17.68 10.7,17.29L15.29,12.7C15.68,12.31,15.68,11.68,15.29,11.29L10.7,6.7C10.32,6.32,9.68,6.32,9.29,6.71z" />
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

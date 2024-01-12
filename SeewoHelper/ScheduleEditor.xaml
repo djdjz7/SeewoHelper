@@ -78,7 +78,7 @@
                 <DataGridTextColumn
                     Width="2*"
                     Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Header="学科" />
+                    Header="学科"/>
                 <DataGridTemplateColumn Width="*" Header="时间">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

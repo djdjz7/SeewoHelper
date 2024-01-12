@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -13,6 +14,7 @@ namespace SeewoHelper
     public partial class FullScreenSchedule : Window, INotifyPropertyChanged
     {
         private ObservableCollection<Curriculum> _curricula;
+        private DispatcherTimer timer;
         public ObservableCollection<Curriculum> Curricula
         {
             get { return _curricula; }
@@ -23,9 +25,7 @@ namespace SeewoHelper
             InitializeComponent();
             Curricula = curricula;
             this.DataContext = this;
-            Left = SystemParameters.WorkArea.Width - Width;
-            Top=SystemParameters.WorkArea.Height/2 - MainListBox.Height/2;
-            DispatcherTimer timer = new DispatcherTimer();
+            timer = new DispatcherTimer();
             timer.Interval = new System.TimeSpan(0, 2, 0);
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -42,6 +42,21 @@ namespace SeewoHelper
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            timer.Stop();
+            base.OnClosing(e);
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            Left = SystemParameters.WorkArea.Width - Width;
+            Top = SystemParameters.WorkArea.Height / 2 - Height / 2;
+        }
     }
 }

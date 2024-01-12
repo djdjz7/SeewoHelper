@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -215,7 +216,10 @@ namespace SeewoHelper
             try
             {
                 DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-                var fileName = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+                var fileName = ((Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+                var info = new FileInfo(fileName);
+                if (info?.Extension.ToLower() != ".json")
+                    return;
                 string jsonData = File.ReadAllText(fileName);
                 /*
                 DeCurriculum[] dc = JsonSerializer.Deserialize<DeCurriculum[]>(jsonData);
@@ -236,7 +240,7 @@ namespace SeewoHelper
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"错误",MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.ServiceNotification);
                 Curricula = Array.Empty<Curriculum>();
             }
         }
@@ -264,13 +268,21 @@ namespace SeewoHelper
         private void SetTopMost_Checked(object sender, RoutedEventArgs e)
         {
             Topmost= true;
+#if DEBUG
             new FullScreenSchedule(new System.Collections.ObjectModel.ObservableCollection<Curriculum>(Curricula)).Show();
-            
+#endif     
         }
 
         private void SetTopMost_Unchecked(object sender, RoutedEventArgs e)
         {
             Topmost= false;
+
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            GlobalTimer.Stop();
+            base.OnClosing(e);
         }
     }
 }
