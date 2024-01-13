@@ -5,10 +5,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
+using System.Windows.Threading;
 
 namespace SeewoHelper
 {
@@ -22,13 +25,19 @@ namespace SeewoHelper
         string ZyflierLocation = "";
         bool IsStartAvailable = true;
         int modeCounter = 0;
+        private DispatcherTimer weatherTimer = new DispatcherTimer();
+        private string weatherLocationCode = "";
 
         DateTime LastClick = DateTime.MinValue;
         int ClickCount = 0;
 
         public MainWindow()
         {
-
+            if (File.Exists("WeatherLocationCode"))
+                weatherLocationCode = File.ReadAllText("WeatherLocationCode");
+            else
+                File.Create("WeatherLocationCode");
+            weatherLocationCode = weatherLocationCode.Trim();
             InitializeComponent();
             Left = System.Windows.SystemParameters.WorkArea.Width - Width - 12;
             Top = System.Windows.SystemParameters.WorkArea.Height - Height - 12;
@@ -68,10 +77,16 @@ namespace SeewoHelper
             {
                 ZyflierLocation = "";
             }
-            //if (string.IsNullOrEmpty(ZyflierLocation))
-            //ZyflierIcon.Visibility = Visibility.Collapsed;
 
             new Schedule().Show();
+            weatherTimer.Interval = new TimeSpan(0, 5, 0);
+            weatherTimer.Tick += WeatherTimer_Tick;
+            weatherTimer.Start();
+        }
+
+        private async void WeatherTimer_Tick(object? sender, EventArgs e)
+        {
+            await UpdateWeatherInfo();
         }
 
         private void EasiNote5Icon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -223,22 +238,7 @@ namespace SeewoHelper
 
         public const int WM_DEVICECHANGE = 0x219;//U盘插入后，OS的底层会自动检测到，然后向应用程序发送“硬件设备状态改变“的消息
         public const int DBT_DEVICEARRIVAL = 0x8000;  //就是用来表示U盘可用的。一个设备或媒体已被插入一块，现在可用。
-        public const int DBT_CONFIGCHANGECANCELED = 0x0019;  //要求更改当前的配置（或取消停靠码头）已被取消。
-        public const int DBT_CONFIGCHANGED = 0x0018;  //当前的配置发生了变化，由于码头或取消固定。
-        public const int DBT_CUSTOMEVENT = 0x8006; //自定义的事件发生。 的Windows NT 4.0和Windows 95：此值不支持。
-        public const int DBT_DEVICEQUERYREMOVE = 0x8001;  //审批要求删除一个设备或媒体作品。任何应用程序也不能否认这一要求，并取消删除。
-        public const int DBT_DEVICEQUERYREMOVEFAILED = 0x8002;  //请求删除一个设备或媒体片已被取消。
         public const int DBT_DEVICEREMOVECOMPLETE = 0x8004;  //一个设备或媒体片已被删除。
-        public const int DBT_DEVICEREMOVEPENDING = 0x8003;  //一个设备或媒体一块即将被删除。不能否认的。
-        public const int DBT_DEVICETYPESPECIFIC = 0x8005;  //一个设备特定事件发生。
-        public const int DBT_DEVNODES_CHANGED = 0x0007;  //一种设备已被添加到或从系统中删除。
-        public const int DBT_QUERYCHANGECONFIG = 0x0017;  //许可是要求改变目前的配置（码头或取消固定）。
-        public const int DBT_USERDEFINED = 0xFFFF;  //此消息的含义是用户定义的
-        public const uint GENERIC_READ = 0x80000000;
-        public const int GENERIC_WRITE = 0x40000000;
-        public const int FILE_SHARE_READ = 0x1;
-        public const int FILE_SHARE_WRITE = 0x2;
-        public const int IOCTL_STORAGE_EJECT_MEDIA = 0x2d4808;
 
         List<DriveInfo> DriveList = new List<DriveInfo>();
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -311,7 +311,7 @@ namespace SeewoHelper
         private void ModeCounter_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             modeCounter = (modeCounter + 1) % 4;
-            switch(modeCounter)
+            switch (modeCounter)
             {
                 case 0:
                     ModeCounter.Text = "·";
@@ -326,6 +326,25 @@ namespace SeewoHelper
                     ModeCounter.Text = "·\n·\n·\n·";
                     break;
             }
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            weatherTimer.Stop();
+            base.OnClosing(e);
+        }
+        private async Task UpdateWeatherInfo()
+        {
+            if (string.IsNullOrEmpty(weatherLocationCode))
+                return;
+            var airQuality = (await QWeatherAPI.GetAirQuality(Confidentials.WeatherAPIKey, weatherLocationCode))?.now;
+            if (airQuality is not null)
+                ;
+
+        }
+
+        private async void window_ContentRendered(object sender, EventArgs e)
+        {
+            await UpdateWeatherInfo();
         }
     }
 }

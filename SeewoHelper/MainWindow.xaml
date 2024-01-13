@@ -11,6 +11,7 @@
     Height="100"
     AllowsTransparency="True"
     Background="Transparent"
+    ContentRendered="window_ContentRendered"
     Loaded="Window_Loaded"
     ShowInTaskbar="False"
     WindowStyle="None"
