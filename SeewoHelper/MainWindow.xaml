@@ -8,16 +8,18 @@
     x:Name="window"
     Title="MainWindow"
     Width="300"
-    Height="100"
     AllowsTransparency="True"
     Background="Transparent"
     ContentRendered="window_ContentRendered"
     Loaded="Window_Loaded"
     ShowInTaskbar="False"
+    SizeChanged="window_SizeChanged"
+    SizeToContent="Height"
     WindowStyle="None"
     mc:Ignorable="d">
 
     <Window.Resources>
+        <local:AQIToBrushConverter x:Key="AQIToBrushConverter" />
         <Storyboard
             x:Key="OpenEasiNote5"
             x:Name="OpenEasiNote5"
@@ -140,122 +142,196 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <Grid HorizontalAlignment="Stretch">
+            <Border
+                Background="#01FFFFFF"
+                CornerRadius="12"
+                SnapsToDevicePixels="True">
+                <Grid>
+                    <Rectangle Fill="#01FFFFFF" MouseDown="Rectangle_MouseDown" />
+                    <StackPanel VerticalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Image
+                                Name="EasiNote5Icon"
+                                Height="64"
+                                MouseDown="EasiNote5Icon_MouseDown"
+                                MouseEnter="EasiNote5Icon_MouseEnter"
+                                MouseLeave="EasiNote5Icon_MouseLeave"
+                                Source="Assets/note5.ico">
+                                <Image.Effect>
+                                    <DropShadowEffect
+                                        x:Name="EasiNote5IconShadow"
+                                        BlurRadius="8"
+                                        ShadowDepth="4"
+                                        Color="#FF74D795" />
+                                </Image.Effect>
+                            </Image>
 
-    <Grid>
-        <Border
-            Background="#01FFFFFF"
-            CornerRadius="12"
-            SnapsToDevicePixels="True">
-            <Grid>
-                <Rectangle Fill="#01FFFFFF" MouseDown="Rectangle_MouseDown" />
-                <StackPanel VerticalAlignment="Center">
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Image
-                            Name="EasiNote5Icon"
-                            Height="64"
-                            MouseDown="EasiNote5Icon_MouseDown"
-                            MouseEnter="EasiNote5Icon_MouseEnter"
-                            MouseLeave="EasiNote5Icon_MouseLeave"
-                            Source="Assets/note5.ico">
-                            <Image.Effect>
-                                <DropShadowEffect
-                                    x:Name="EasiNote5IconShadow"
-                                    BlurRadius="8"
-                                    ShadowDepth="4"
-                                    Color="#FF74D795" />
-                            </Image.Effect>
-                        </Image>
-
+                            <TextBlock
+                                Name="ModeCounter"
+                                Margin="12,0,0,0"
+                                VerticalAlignment="Center"
+                                Background="#01000000"
+                                FontSize="6"
+                                FontWeight="Black"
+                                Foreground="White"
+                                MouseDown="ModeCounter_MouseDown"
+                                Text="·" />
+                            <Image
+                                Name="CameraIcon"
+                                Height="64"
+                                Margin="12,0,0,0"
+                                MouseDown="CameraIcon_MouseDown"
+                                MouseEnter="CameraIcon_MouseEnter"
+                                MouseLeave="CameraIcon_MouseLeave"
+                                Source="Assets/camera.png">
+                                <Image.Effect>
+                                    <DropShadowEffect
+                                        x:Name="CameraIconShadow"
+                                        BlurRadius="8"
+                                        ShadowDepth="4"
+                                        Color="#FF9E9E9E" />
+                                </Image.Effect>
+                            </Image>
+                        </StackPanel>
                         <TextBlock
-                            Name="ModeCounter"
-                            Margin="12,0,0,0"
+                            x:Name="textBlock"
+                            Margin="0,0,0,0"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Background="#01000000"
-                            FontSize="6"
-                            FontWeight="Black"
+                            FontSize="16"
                             Foreground="White"
-                            MouseDown="ModeCounter_MouseDown"
-                            Text="·" />
-                        <Image
-                            Name="CameraIcon"
-                            Height="64"
-                            Margin="12,0,0,0"
-                            MouseDown="CameraIcon_MouseDown"
-                            MouseEnter="CameraIcon_MouseEnter"
-                            MouseLeave="CameraIcon_MouseLeave"
-                            Source="Assets/camera.png">
-                            <Image.Effect>
-                                <DropShadowEffect
-                                    x:Name="CameraIconShadow"
-                                    BlurRadius="8"
-                                    ShadowDepth="4"
-                                    Color="#FF9E9E9E" />
-                            </Image.Effect>
-                        </Image>
+                            Opacity="0"
+                            Text="正在启动" />
                     </StackPanel>
-                    <TextBlock
-                        x:Name="textBlock"
-                        Margin="0,0,0,0"
-                        HorizontalAlignment="Center"
+                    <StackPanel
+                        Width="20"
+                        Margin="0,-10,0,0"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        FontSize="16"
-                        Foreground="White"
-                        Opacity="0"
-                        Text="正在启动" />
-                </StackPanel>
-                <StackPanel
-                    Width="20"
-                    Margin="0,-10,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Orientation="Vertical">
-                    <Image Name="ExitApplication" MouseDown="ExitApplication_MouseDown">
-                        <Image.Source>
-                            <DrawingImage>
-                                <DrawingImage.Drawing>
-                                    <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
-                                        <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M19,6.41L17.59,5 12,10.59 6.41,5 5,6.41 10.59,12 5,17.59 6.41,19 12,13.41 17.59,19 19,17.59 13.41,12z" />
-                                    </DrawingGroup>
-                                </DrawingImage.Drawing>
-                            </DrawingImage>
-                        </Image.Source>
-                    </Image>
-
-                    <Image
-                        Name="ShowSchedule"
-                        Margin="0,5,0,0"
-                        MouseDown="ShowSchedule_MouseDown">
-                        <Image.Source>
-                            <DrawingImage>
-                                <DrawingImage.Drawing>
-                                    <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
-                                        <DrawingGroup Opacity="1">
-                                            <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M19,4L18,4 18,2 16,2 16,4 8,4 8,2 6,2 6,4 5,4C3.89,4,3.01,4.9,3.01,6L3,20C3,21.1,3.89,22,5,22L19,22C20.1,22,21,21.1,21,20L21,6C21,4.9,20.1,4,19,4z M19,20L5,20 5,10 19,10 19,20z M19,8L5,8 5,6 19,6 19,8z M9,14L7,14 7,12 9,12 9,14z M13,14L11,14 11,12 13,12 13,14z M17,14L15,14 15,12 17,12 17,14z M9,18L7,18 7,16 9,16 9,18z M13,18L11,18 11,16 13,16 13,18z M17,18L15,18 15,16 17,16 17,18z" />
+                        Orientation="Vertical">
+                        <Image Name="ExitApplication" MouseDown="ExitApplication_MouseDown">
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                            <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M19,6.41L17.59,5 12,10.59 6.41,5 5,6.41 10.59,12 5,17.59 6.41,19 12,13.41 17.59,19 19,17.59 13.41,12z" />
                                         </DrawingGroup>
-                                    </DrawingGroup>
-                                </DrawingImage.Drawing>
-                            </DrawingImage>
-                        </Image.Source>
-                    </Image>
-                    <Image
-                        Name="OpenWidget"
-                        Margin="0,5,0,0"
-                        MouseDown="OpenWidget_MouseDown">
-                        <Image.Source>
-                            <DrawingImage>
-                                <DrawingImage.Drawing>
-                                    <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
-                                        <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M3,10L14,10 14,12 3,12 3,10z M3,8L14,8 14,6 3,6 3,8z M3,16L10,16 10,14 3,14 3,16z M18.01,12.87L18.72,12.16C19.11,11.77,19.74,11.77,20.13,12.16L20.84,12.87C21.23,13.26,21.23,13.89,20.84,14.28L20.13,14.99 18.01,12.87z M17.3,13.58L12,18.88 12,21 14.12,21 19.42,15.7 17.3,13.58z" />
-                                    </DrawingGroup>
-                                </DrawingImage.Drawing>
-                            </DrawingImage>
-                        </Image.Source>
-                    </Image>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
 
-                </StackPanel>
-            </Grid>
+                        <Image
+                            Name="ShowSchedule"
+                            Margin="0,5,0,0"
+                            MouseDown="ShowSchedule_MouseDown">
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                            <DrawingGroup Opacity="1">
+                                                <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M19,4L18,4 18,2 16,2 16,4 8,4 8,2 6,2 6,4 5,4C3.89,4,3.01,4.9,3.01,6L3,20C3,21.1,3.89,22,5,22L19,22C20.1,22,21,21.1,21,20L21,6C21,4.9,20.1,4,19,4z M19,20L5,20 5,10 19,10 19,20z M19,8L5,8 5,6 19,6 19,8z M9,14L7,14 7,12 9,12 9,14z M13,14L11,14 11,12 13,12 13,14z M17,14L15,14 15,12 17,12 17,14z M9,18L7,18 7,16 9,16 9,18z M13,18L11,18 11,16 13,16 13,18z M17,18L15,18 15,16 17,16 17,18z" />
+                                            </DrawingGroup>
+                                        </DrawingGroup>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
+                        <Image
+                            Name="OpenWidget"
+                            Margin="0,5,0,0"
+                            MouseDown="OpenWidget_MouseDown">
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                                            <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M24,24z M0,0z M3,10L14,10 14,12 3,12 3,10z M3,8L14,8 14,6 3,6 3,8z M3,16L10,16 10,14 3,14 3,16z M18.01,12.87L18.72,12.16C19.11,11.77,19.74,11.77,20.13,12.16L20.84,12.87C21.23,13.26,21.23,13.89,20.84,14.28L20.13,14.99 18.01,12.87z M17.3,13.58L12,18.88 12,21 14.12,21 19.42,15.7 17.3,13.58z" />
+                                        </DrawingGroup>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
+
+                    </StackPanel>
+                </Grid>
 
 
-        </Border>
-    </Grid>
+            </Border>
+        </Grid>
+        <StackPanel Name="QweatherPanel" Visibility="Collapsed">
+
+            <Slider
+                Name="AQISlider"
+                IsEnabled="False"
+                Maximum="300">
+                <Slider.Style>
+                    <Style TargetType="Slider">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Rectangle
+                                            Height="4"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            RadiusX="2"
+                                            RadiusY="2">
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1, 0.5">
+                                                    <GradientStop Color="#009966" />
+                                                    <GradientStop Offset=".2" Color="#ffde33" />
+                                                    <GradientStop Offset=".4" Color="#ff9933" />
+                                                    <GradientStop Offset=".6" Color="#cc0033" />
+                                                    <GradientStop Offset=".8" Color="#660099" />
+                                                    <GradientStop Offset="1" Color="#7e0023" />
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        <Track x:Name="PART_Track" Height="12">
+                                            <Track.Thumb>
+                                                <Thumb Name="AQIThumb" Background="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource AQIToBrushConverter}}">
+                                                    <Thumb.Template>
+                                                        <ControlTemplate>
+                                                            <Grid Width="12" Height="12">
+                                                                <Rectangle
+                                                                    Fill="White"
+                                                                    RadiusX="12"
+                                                                    RadiusY="12" />
+                                                                <Rectangle
+                                                                    Margin="1"
+                                                                    Fill="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                    RadiusX="11"
+                                                                    RadiusY="11" />
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Thumb.Template>
+                                                </Thumb>
+                                            </Track.Thumb>
+                                        </Track>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Slider.Style>
+            </Slider>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Name="AQIValueText" Foreground="White" />
+                <TextBlock
+                    Name="AirQualityCategory"
+                    Margin="4,0,0,0"
+                    Foreground="White" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Name="Temperature" Foreground="White" />
+                <TextBlock
+                    Name="WeatherText"
+                    Margin="4,0,0,0"
+                    Foreground="White" />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
 </Window>

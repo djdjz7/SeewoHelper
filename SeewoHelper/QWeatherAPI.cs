@@ -7,22 +7,47 @@ namespace SeewoHelper;
 
 public static class QWeatherAPI
 {
-    public static HttpClient WeatherClient = new HttpClient(new HttpClientHandler()
-        {
-            AutomaticDecompression = System.Net.DecompressionMethods.GZip 
-        })
-    { 
-        BaseAddress = new Uri("https://devapi.qweather.com/v7/") 
-    };
-    public static async Task<QWeatherResponse<AirQuality>?> GetAirQuality(string key, string location)
+    private static HttpClient _weatherClient = new HttpClient(
+        new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip }
+    )
     {
-        var rawResponse = await (await WeatherClient.GetAsync($"air/now?key={key}&location={location}")).Content.ReadAsStringAsync();
-        if (rawResponse == null)
-            return null;
-        return JsonSerializer.Deserialize<QWeatherResponse<AirQuality>?>(rawResponse.Trim());
+        BaseAddress = new Uri("https://devapi.qweather.com/v7/")
+    };
+
+    public static async Task<QWeatherResponse<AirQuality>?> GetAirQualityAsync(
+        string key,
+        string location
+    )
+    {
+        try
+        {
+            var rawResponse = await (
+                await _weatherClient.GetAsync($"air/now?key={key}&location={location}")
+            ).Content.ReadAsStringAsync();
+            if (rawResponse == null)
+                return null;
+            return JsonSerializer.Deserialize<QWeatherResponse<AirQuality>?>(rawResponse.Trim());
+        }
+        catch { return null; }
+    }
+
+    public static async Task<QWeatherResponse<CurrentWeather>?> GetCurrentWeatherAsync(
+        string key,
+        string location
+    )
+    {
+        try
+        {
+            var rawResponse = await (
+                await _weatherClient.GetAsync($"weather/now?key={key}&location={location}")
+            ).Content.ReadAsStringAsync();
+            if (rawResponse == null)
+                return null;
+            return JsonSerializer.Deserialize<QWeatherResponse<CurrentWeather>?>(rawResponse.Trim());
+        }
+        catch { return null; }
     }
 }
-
 
 public class QWeatherResponse<T>
 {
@@ -70,4 +95,23 @@ public class Station
     public string so2 { get; set; }
     public string co { get; set; }
     public string o3 { get; set; }
+}
+
+public class CurrentWeather
+{
+    public string obsTime { get; set; }
+    public string temp { get; set; }
+    public string feelsLike { get; set; }
+    public string icon { get; set; }
+    public string text { get; set; }
+    public string wind360 { get; set; }
+    public string windDir { get; set; }
+    public string windScale { get; set; }
+    public string windSpeed { get; set; }
+    public string humidity { get; set; }
+    public string precip { get; set; }
+    public string pressure { get; set; }
+    public string vis { get; set; }
+    public string cloud { get; set; }
+    public string dew { get; set; }
 }

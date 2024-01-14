@@ -39,8 +39,6 @@ namespace SeewoHelper
                 File.Create("WeatherLocationCode");
             weatherLocationCode = weatherLocationCode.Trim();
             InitializeComponent();
-            Left = System.Windows.SystemParameters.WorkArea.Width - Width - 12;
-            Top = System.Windows.SystemParameters.WorkArea.Height - Height - 12;
             try
             {
                 RegistryKey easinoteKey = Registry.ClassesRoot.OpenSubKey("easinote");
@@ -79,9 +77,15 @@ namespace SeewoHelper
             }
 
             new Schedule().Show();
-            weatherTimer.Interval = new TimeSpan(0, 5, 0);
-            weatherTimer.Tick += WeatherTimer_Tick;
-            weatherTimer.Start();
+
+            if (!string.IsNullOrEmpty(weatherLocationCode))
+            {
+                weatherTimer.Interval = new TimeSpan(0, 10, 0);
+                weatherTimer.Tick += WeatherTimer_Tick;
+                weatherTimer.Start();
+            }
+            else
+                QweatherPanel.Visibility = Visibility.Collapsed;
         }
 
         private async void WeatherTimer_Tick(object? sender, EventArgs e)
@@ -334,17 +338,40 @@ namespace SeewoHelper
         }
         private async Task UpdateWeatherInfo()
         {
-            if (string.IsNullOrEmpty(weatherLocationCode))
-                return;
-            var airQuality = (await QWeatherAPI.GetAirQuality(Confidentials.WeatherAPIKey, weatherLocationCode))?.now;
-            if (airQuality is not null)
-                ;
-
+            try
+            {
+                var airQuality = (await QWeatherAPI.GetAirQualityAsync(Confidentials.WeatherAPIKey, weatherLocationCode))?.now;
+                if (airQuality is not null)
+                {
+                    AQIValueText.Text = "AQI: " + airQuality.aqi;
+                    AQISlider.Value = double.Parse(airQuality.aqi);
+                    AirQualityCategory.Text = airQuality.category;
+                }
+                var CurrentWeather = (await QWeatherAPI.GetCurrentWeatherAsync(Confidentials.WeatherAPIKey, weatherLocationCode))?.now;
+                if (CurrentWeather is not null)
+                {
+                    Temperature.Text = CurrentWeather.temp + "℃";
+                    WeatherText.Text = CurrentWeather.text;
+                }
+                QweatherPanel.Visibility = Visibility.Visible;
+            }
+            catch
+            {
+                QweatherPanel.Visibility = Visibility.Collapsed;
+            }
         }
 
         private async void window_ContentRendered(object sender, EventArgs e)
         {
+            Left = System.Windows.SystemParameters.WorkArea.Width - ActualWidth - 12;
+            Top = System.Windows.SystemParameters.WorkArea.Height - ActualHeight - 12;
             await UpdateWeatherInfo();
+        }
+
+        private void window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Left = System.Windows.SystemParameters.WorkArea.Width - ActualWidth - 12;
+            Top = System.Windows.SystemParameters.WorkArea.Height - ActualHeight - 12;
         }
     }
 }
