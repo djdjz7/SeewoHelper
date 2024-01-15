@@ -338,6 +338,8 @@ namespace SeewoHelper
         }
         private async Task UpdateWeatherInfo()
         {
+            if (string.IsNullOrEmpty(weatherLocationCode))
+                return;
             try
             {
                 var airQuality = (await QWeatherAPI.GetAirQualityAsync(Confidentials.WeatherAPIKey, weatherLocationCode))?.now;
@@ -352,6 +354,7 @@ namespace SeewoHelper
                 {
                     Temperature.Text = CurrentWeather.temp + "℃";
                     WeatherText.Text = CurrentWeather.text;
+                    WeatherIcon.Source = new Uri($"pack://application:,,,/weather-icons/{CurrentWeather.icon}.svg");
                 }
                 QweatherPanel.Visibility = Visibility.Visible;
             }

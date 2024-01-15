@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SeewoHelper"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
     x:Name="window"
     Title="MainWindow"
     Width="300"
@@ -326,6 +327,7 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock Name="Temperature" Foreground="White" />
+                <svgc:SvgViewbox Name="WeatherIcon" Margin="4,0,0,0" />
                 <TextBlock
                     Name="WeatherText"
                     Margin="4,0,0,0"

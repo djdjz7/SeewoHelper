@@ -23,7 +23,7 @@ public static class QWeatherAPI
         {
             var rawResponse = await (
                 await _weatherClient.GetAsync($"air/now?key={key}&location={location}")
-            ).Content.ReadAsStringAsync();
+            ).EnsureSuccessStatusCode().Content.ReadAsStringAsync();
             if (rawResponse == null)
                 return null;
             return JsonSerializer.Deserialize<QWeatherResponse<AirQuality>?>(rawResponse.Trim());
@@ -40,7 +40,7 @@ public static class QWeatherAPI
         {
             var rawResponse = await (
                 await _weatherClient.GetAsync($"weather/now?key={key}&location={location}")
-            ).Content.ReadAsStringAsync();
+            ).EnsureSuccessStatusCode().Content.ReadAsStringAsync();
             if (rawResponse == null)
                 return null;
             return JsonSerializer.Deserialize<QWeatherResponse<CurrentWeather>?>(rawResponse.Trim());
